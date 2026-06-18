@@ -1,0 +1,11 @@
+@inject UserSettingsProvider UserSettingsProvider
+@using NameBadge.Services
+
+@if (_state == null)
+{
+    <p>loading...</p>
+}
+else
+{
+    <CascadingValue Value="@_state" IsFixed="false">@ChildContent</CascadingValue>
+}
