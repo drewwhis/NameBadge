@@ -5,15 +5,15 @@ namespace NameBadge.Models;
 
 public class UserSettings : INotifyPropertyChanged
 {
-    public string Username
+    public string ProgramType
     {
-        get => field ?? string.Empty; 
+        get;
         set
         {
             field = value;
             RaisePropertyChanged();
         }
-    }
+    } = string.Empty;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

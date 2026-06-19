@@ -1,2 +1,15 @@
 @page "/Settings"
+@using NameBadge.Models
 <h3>Settings</h3>
+
+<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Start"
+             Gap="0.5rem" class="rz-p-sm-12">
+    <RadzenLabel Text="Event Type (Program)" Component="DropDownBindValue" />
+    <RadzenDropDown @bind-Value=@UserSettings.ProgramType Data=@ProgramType.ProgramTypes
+                    TextProperty="@nameof(ProgramType.DisplayName)" ValueProperty="@nameof(ProgramType.Code)"
+                    Style="width: 100%; max-width: 400px;" Name="DropDownBindValue">
+        <Template>
+            @((context as ProgramType)?.DisplayName)
+        </Template>
+    </RadzenDropDown>
+</RadzenStack>
