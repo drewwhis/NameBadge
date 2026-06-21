@@ -5,11 +5,18 @@
 <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Start"
              Gap="0.5rem" class="rz-p-sm-12">
     <RadzenLabel Text="Event Type (Program)" Component="DropDownBindValue" />
-    <RadzenDropDown @bind-Value=@UserSettings.ProgramType Data=@ProgramType.ProgramTypes
+    <RadzenDropDown @bind-Value=@UserSettings.ProgramCode Data=@ProgramType.ProgramTypes
                     TextProperty="@nameof(ProgramType.DisplayName)" ValueProperty="@nameof(ProgramType.Code)"
                     Style="width: 100%; max-width: 400px;" Name="DropDownBindValue">
         <Template>
             @((context as ProgramType)?.DisplayName)
         </Template>
     </RadzenDropDown>
+</RadzenStack>
+
+
+<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Start"
+             Gap="0.5rem" class="rz-p-sm-12">
+    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Event Name</RadzenText>
+    <RadzenTextBox Immediate="true" @bind-Value="@UserSettings.EventName" Style="width: 100%" />
 </RadzenStack>
