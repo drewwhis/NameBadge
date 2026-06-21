@@ -1,32 +1,67 @@
 @page "/Settings"
 @using NameBadge.Models
+@inject NavigationManager NavigationManager
 <h3>Settings</h3>
 
-<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Start"
-             Gap="0.5rem" class="rz-p-sm-12">
-    <RadzenLabel Text="Event Type (Program)" Component="DropDownBindValue" />
-    <RadzenDropDown @bind-Value=@UserSettings.ProgramCode Data=@ProgramType.ProgramTypes
-                    TextProperty="@nameof(ProgramType.DisplayName)" ValueProperty="@nameof(ProgramType.Code)"
-                    Style="width: 100%; max-width: 400px;" Name="DropDownBindValue">
+<RadzenStack 
+    Orientation="Orientation.Horizontal" 
+    AlignItems="AlignItems.Center" 
+    JustifyContent="JustifyContent.Start" 
+    Gap="0.5rem" 
+    class="rz-p-sm-12">
+    <RadzenLabel 
+        Text="Event Type (Program)" 
+        Component="DropDownBindValue" />
+    <RadzenDropDown 
+        @bind-Value=@UserSettings.ProgramCode 
+        Data="@ProgramType.ProgramTypes"
+        TextProperty="@nameof(ProgramType.DisplayName)" 
+        ValueProperty="@nameof(ProgramType.Code)" 
+        Style="width: 100%; max-width: 400px;" Name="DropDownBindValue">
         <Template>
             @((context as ProgramType)?.DisplayName)
         </Template>
     </RadzenDropDown>
 </RadzenStack>
 
-<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Start"
-             Gap="0.5rem" class="rz-p-sm-12">
-    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Event Name</RadzenText>
-    <RadzenTextBox Immediate="true" @bind-Value="@UserSettings.EventName" Style="width: 100%" />
+<RadzenStack 
+    Orientation="Orientation.Horizontal" 
+    AlignItems="AlignItems.Center" 
+    JustifyContent="JustifyContent.Start" 
+    Gap="0.5rem" class="rz-p-sm-12">
+    <RadzenText 
+        TextStyle="TextStyle.Subtitle2" 
+        TagName="TagName.H3">Event Name</RadzenText>
+    <RadzenTextBox 
+        Immediate="true" 
+        @bind-Value="@UserSettings.EventName" 
+        Style="width: 100%" />
 </RadzenStack>
 
-<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Start"
-             Gap="0.5rem" class="rz-p-sm-12">
-    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Event Year</RadzenText>
+<RadzenStack 
+    Orientation="Orientation.Horizontal" 
+    AlignItems="AlignItems.Center" 
+    JustifyContent="JustifyContent.Start"
+    Gap="0.5rem" 
+    class="rz-p-sm-12">
+    <RadzenText 
+        TextStyle="TextStyle.Subtitle2" 
+        TagName="TagName.H3">Event Year</RadzenText>
     <RadzenNumeric 
-        @bind-Value=@UserSettings.Year 
+        @bind-Value="@UserSettings.Year" 
         Min="2025" 
         Placeholder="2025" 
         Step="1" 
         InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "enter value" }})" />
+</RadzenStack>
+
+<RadzenStack 
+    Orientation="Orientation.Horizontal" 
+    AlignItems="AlignItems.Center" 
+    Gap="1rem" 
+    Wrap="FlexWrap.Wrap">
+    <RadzenButton 
+        Click=@(_ => NavigationManager.NavigateTo("/")) 
+        Text="Home" Icon="home" 
+        ButtonStyle="ButtonStyle.Base" />
 </RadzenStack>
