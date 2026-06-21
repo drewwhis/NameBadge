@@ -14,9 +14,19 @@
     </RadzenDropDown>
 </RadzenStack>
 
-
 <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Start"
              Gap="0.5rem" class="rz-p-sm-12">
     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Event Name</RadzenText>
     <RadzenTextBox Immediate="true" @bind-Value="@UserSettings.EventName" Style="width: 100%" />
+</RadzenStack>
+
+<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Start"
+             Gap="0.5rem" class="rz-p-sm-12">
+    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Event Year</RadzenText>
+    <RadzenNumeric 
+        @bind-Value=@UserSettings.Year 
+        Min="2025" 
+        Placeholder="2025" 
+        Step="1" 
+        InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "enter value" }})" />
 </RadzenStack>

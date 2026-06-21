@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using NameBadge.Models
+@inject NavigationManager NavigationManager
 
 <PageTitle>Name Badge</PageTitle>
 
@@ -7,4 +9,20 @@
 <p>Welcome! Follow the steps below to start printing name badges for the event.
 </p>
 
-<p>@((MarkupString)DisplayEventData())</p>
+<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="1rem" Wrap="FlexWrap.Wrap">
+    <RadzenButton Click=@(_ => NavigationManager.NavigateTo("settings")) Text="Settings" Icon="settings" ButtonStyle="GetSettingsButtonStyle()" />
+</RadzenStack>
+
+@if (UserSettings.IsComplete)
+{
+    <p>This event has these settings:</p>
+    <ul>
+        <li>Program: @ProgramType.ProgramTypes.FirstOrDefault(p => UserSettings.ProgramCode.Equals(p.Code, StringComparison.OrdinalIgnoreCase))</li>
+        <li>Event Name: @UserSettings.EventName</li>
+        <li>Event Year: @UserSettings.Year</li>
+    </ul>
+}
+else
+{
+    <p>@((MarkupString)DisplayMissingSettings())</p>
+}

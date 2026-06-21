@@ -60,18 +60,16 @@ public sealed class UserSettingsProvider(IJSRuntime jsRuntime)
         return result;
     }
 
-    public async Task<bool> Save()
+    private async Task Save()
     {
         var json = JsonSerializer.Serialize(_settings);
         try
         {
             await jsRuntime.InvokeVoidAsync("BlazorSetLocalStorage", KeyName, json);
-            return true;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return false;
         }
     }
 

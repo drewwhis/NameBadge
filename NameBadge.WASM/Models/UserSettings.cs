@@ -25,6 +25,20 @@ public class UserSettings : INotifyPropertyChanged
         }
     } = string.Empty;
 
+    public uint Year
+    {
+        get;
+        set
+        {
+            field = value;
+            RaisePropertyChanged();
+        }
+    }
+
+    public bool IsComplete => !string.IsNullOrWhiteSpace(ProgramCode)
+                              && !string.IsNullOrWhiteSpace(EventName)
+                              && Year > 0;
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void RaisePropertyChanged([CallerMemberName] string? propertyName = null)
